@@ -1,0 +1,15 @@
+[Unit]
+Description=p1metertomqtt - P1 meter to MQTT
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/p1metertomqtt --config /etc/default/p1metertomqtt
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
