@@ -9,7 +9,7 @@ structure and config convention.
 
 ## What it does
 
-Every `interval` seconds, on the clock (10: at :00, :10, :20, ...), it GETs `p1meter-url` (the meter's
+Every `interval` seconds, on the clock (30: at :00 and :30), it GETs `p1meter-url` (the meter's
 `/api/v1/data`) and publishes the JSON object to `mqtt-topic`, with `ts` (unix seconds, when it was read) added
 as the first member. Not retained. A line is logged when the meter stops answering, and when it answers again;
 with `debug=true`, a line for each publish.
@@ -48,7 +48,7 @@ Every setting is a config-file `key=value` **and** an equivalent `--key value` c
 | `mqtt-client` | `p1metertomqtt` | client id (prefix) |
 | `mqtt-topic` | `sensors/p1meter` | topic to publish to |
 | `p1meter-url` | `http://p1meter.local/api/v1/data` | the meter's data endpoint (it announces itself as `p1meter-XXXXXX.local`) |
-| `interval` | `10` | seconds between reads |
+| `interval` | `30` | seconds between reads (the meter's kWh counter makes energy over any period exact, whatever the interval) |
 | `debug` | `false` | a line for each publish |
 
 ## Output (MQTT)

@@ -33,7 +33,7 @@
 #define CONFIG_FILE_DEFAULT "p1metertomqtt.cfg"
 
 #define P1METER_URL_DEFAULT "http://p1meter.local/api/v1/data"
-#define INTERVAL_DEFAULT    10
+#define INTERVAL_DEFAULT    30
 
 #define MQTT_SERVER_DEFAULT "mqtt://localhost"
 #define MQTT_CLIENT_DEFAULT "p1metertomqtt"
@@ -112,7 +112,7 @@ bool p1meter_publish(const time_t ts) {
     return true;
 }
 
-// on the clock: interval 10 = at :00, :10, ...; a line when the meter stops answering, and when it answers again
+// on the clock: interval 30 = at :00 and :30; a line when the meter stops answering, and when it answers again
 void execute(volatile bool *running) {
     printf("executing (url='%s', interval=%d seconds, topic='%s')\n", p1meter_url, interval, mqtt_topic);
     time_t failing_since = 0;
